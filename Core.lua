@@ -33,10 +33,10 @@ local isRunning, isExternal = false, false
 -- TODO: ADD BACK CAST
    -- "/cast " .. gem.name .."\n"
 local NOOP_MACRO = "/script print('NOT CASTING, just swapping')\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
-local CAST_MACRO = "/script print('cast using var ' .. _G.SC.equipped.name)\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
--- local CAST_MACRO = "/script print('cast using var ' .. _G.SC.equipped.name)"
+local CAST_MACRO = "/script print('cast using var ' .. _G.RC.equipped.name)\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
+-- local CAST_MACRO = "/script print('cast using var ' .. _G.RC.equipped.name)"
 
-_G.SC = RemixCogwheel
+_G.RC = RemixCogwheel
 _G.BINDING_CATEGORY = "Remix Cogwheel"
 _G["BINDING_NAME_CLICK RemixCogwheelButton:LeftButton"] = "Activate"
 
