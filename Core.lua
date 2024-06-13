@@ -1,8 +1,6 @@
 --[[---------------------------------------------------------------------------
 
 TODO:
-  [ ] Cleanup DBG
-
   TESTING:
     [ ] boots dont have socket
 
@@ -172,7 +170,6 @@ function RemixCogwheel:OnEnable()
 end
 
 function RemixCogwheel:BAG_UPDATE_DELAYED()
-   -- print("##BAG_UPDATE. isRunning:" .. tostring(isRunning))
    local equippedChanged = false
    if not isRunning then
       equippedChanged = self:GetAndSetEquippedGem()
@@ -340,7 +337,6 @@ function RemixCogwheel:BuildGemLookup()
 end
 
 function RemixCogwheel:FindGemsInBags()
-   -- print("##FindGemsInBags")
    for b = 0, NUM_BAG_SLOTS do
       for s = 1, C_Container.GetContainerNumSlots(b) do
          local itemID = C_Container.GetContainerItemID(b, s)
@@ -427,8 +423,7 @@ function RemixCogwheel:GetNextGem()
 end
 
 function RemixCogwheel:UpdateButton()
-   -- print("##UpdateButton")
-  
+ 
    -- verify boots and gem equipped
    if not self.equipped then
       self.fs1:SetText("NO")
@@ -512,6 +507,5 @@ function RemixCogwheel:DumpGemInfo()
       print(string.format("next: %s", self.next.name))
    else
       print("WARN: no next gem")
-   end
-   
+   end   
 end
