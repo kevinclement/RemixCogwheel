@@ -461,7 +461,7 @@ end
 
 -- Expose for macros/opie     
 function RemixCogwheel:SwapInGem(gemId)
-   self.f:SetAttribute("macrotext", NOOP_MACRO)
+   self.f:SetAttribute("macrotext1", NOOP_MACRO)
    self.next = self.GEM_LOOKUP[tostring(gemId)]
 end
 
