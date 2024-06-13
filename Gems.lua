@@ -3,7 +3,7 @@ local AceEvent = LibStub("AceEvent-3.0")
 NOTIFY_GEMS = {}
 AceEvent:Embed(NOTIFY_GEMS) 
 
-GEMS_VERSION = "0.6"
+GEMS_VERSION = "0.8"
 GEMS = {
    {
       name = "Sprint",
@@ -22,18 +22,18 @@ GEMS = {
       texture = "spell_druid_stamedingroar",
       spellId = 441493,
       gemId = 218005
+   },   
+   {
+      name = "Blink",
+      texture = "spell_arcane_blink",
+      spellId = 427053,
+      gemId = 216629      
    },
    {
       name = "Roll",
       texture = "ability_monk_roll",
       spellId = 427026,
       gemId = 216631
-   },
-   {
-      name = "Blink",
-      texture = "spell_arcane_blink",
-      spellId = 427053,
-      gemId = 216629      
    },
 
    -- {
@@ -49,7 +49,7 @@ GEMS = {
    {
       name = "Heroic Leap",
       texture = "ability_heroicleap",
-      spellId = 427031,
+      spellId = 427033,
       gemId = 216630,
       isEnabled = false
    },
@@ -84,10 +84,10 @@ GEMS = {
    {
       name = "Leap of Faith",
       texture = "priest_spell_leapoffaith_a",
-      spellId = 441471,
+      spellId = 441467,
       gemId = 218003,
       isEnabled = false
-   },
+   },   
    {
       name = "Disengage",
       texture = "ability_rogue_feint",
@@ -109,6 +109,9 @@ GEMS = {
       gemId = 218004,
       isEnabled = false
    },
+
+   -- 427031
+   -- 441471
 
    -- FULLY DISABLED: don't see use for this for now
    -- ############################################################################
