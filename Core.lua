@@ -1,15 +1,10 @@
 --[[---------------------------------------------------------------------------
 
 TODO:
-
-  [ ] add help description above buttons for help with right click, drag, etc
   [ ] Cleanup DBG
 
   TESTING:
     [ ] boots dont have socket
-
-  COOLDOWN:
-    [ ] it shows GCD right now, might now want that or maybe setting?
 
   FUTURE:
       [ ] Add Macro from settings
@@ -471,8 +466,9 @@ function RemixCogwheel:UpdateButton()
    self.f:Enable()
 
    -- update the macro
-   -- TODO: need combat protection again
-   self.f:SetAttribute("macrotext1", strtemplate(CAST_MACRO, self.equipped.name))
+   if not InCombatLockdown() then
+      self.f:SetAttribute("macrotext1", strtemplate(CAST_MACRO, self.equipped.name))
+   end
 end
 
 -- Expose for macros/opie     
