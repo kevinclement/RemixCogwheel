@@ -290,7 +290,7 @@ function RemixCogwheel:CreateButton()
          ClickSocketButton(1)
          ClearCursor()
          AcceptSockets()
-         CloseSocketInfo()         
+         CloseSocketInfo()
 
          isRunning = false
          local moveGem = self.equipped

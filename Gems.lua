@@ -3,7 +3,7 @@ local AceEvent = LibStub("AceEvent-3.0")
 NOTIFY_GEMS = {}
 AceEvent:Embed(NOTIFY_GEMS) 
 
-GEMS_VERSION = "0.8"
+GEMS_VERSION = "0.9"
 GEMS = {
    {
       name = "Sprint",
@@ -27,13 +27,7 @@ GEMS = {
       name = "Blink",
       texture = "spell_arcane_blink",
       spellId = 427053,
-      gemId = 216629      
-   },
-   {
-      name = "Roll",
-      texture = "ability_monk_roll",
-      spellId = 427026,
-      gemId = 216631
+      gemId = 216629
    },
 
    -- {
@@ -109,9 +103,15 @@ GEMS = {
       gemId = 218004,
       isEnabled = false
    },
-
-   -- 427031
-   -- 441471
+   
+   -- BUG: Roll doesn't work with this right now, need to investigate
+   -- {
+   --    name = "Roll",
+   --    texture = "ability_monk_roll",
+   --    spellId = 427026,
+   --    gemId = 216631,
+   --    isEnabled = false,
+   -- },
 
    -- FULLY DISABLED: don't see use for this for now
    -- ############################################################################
