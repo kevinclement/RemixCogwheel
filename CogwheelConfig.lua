@@ -88,7 +88,7 @@ local function onEnter(btn)
 		tooltip:SetSpellByID(cog.spellId, nil, false)
 		tooltip:AddLine(" ")
 		tooltip:AddLine("Equipped", 0, .7, 0)
-		tooltip:AddLine("Currently equipped cogwheel, cannot be disabled.", GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b, true)
+		tooltip:AddLine("Currently equipped cogwheel cannot be disabled.", GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b, true)
 	elseif not cog.isOwned then 
 		tooltip:SetSpellByID(cog.spellId, nil, false)
 		tooltip:AddLine(" ")
@@ -308,23 +308,39 @@ local function Constructor()
 	local frame = CreateFrame("Frame", nil, UIParent)   
     frame:SetHeight(100)
     frame:Hide()
-        
-    self.myFrame = CreateFrame("Frame", "RemixCogwheelFrame", frame)
-	self.myFrame:SetPoint("TOPLEFT", 0, -18)
-	self.myFrame:SetPoint("BOTTOMRIGHT")	
 
-    -- local tex = frame:CreateTexture()
-    -- tex:SetAllPoints()
-    -- tex:SetColorTexture(24/255, 101/255, 121/255)
-    -- local tex = self.frame:CreateTexture()
-    -- tex:SetAllPoints()
-	-- tex:SetColorTexture(118/255, 181/255, 197/255)	
-    
+	-- Label
 	local label = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	label:SetPoint("TOPLEFT", 0, -2)
 	label:SetPoint("TOPRIGHT", 0, -2)
 	label:SetJustifyH("LEFT")
-	label:SetHeight(18)	
+	label:SetHeight(18)
+	label:SetScript("OnEnter", function(lbl)
+		local tooltip = AceGUI.tooltip
+		tooltip:SetOwner(lbl, "ANCHOR_NONE")	
+		tooltip:SetPoint("BOTTOMLEFT", lbl, "TOPLEFT", 0, 5)
+		
+		tooltip:SetText("Cog Wheels");
+		tooltip:AddLine("Configure the order you want your cogwheels to execute in.", 1, 1, 1,  1, true);
+		tooltip:AddLine(" ")
+		tooltip:AddLine("Change Order", 1, .82, 0)
+		tooltip:AddLine("Drag and drop a cog to change order.", 1, 1, 1,  1, true);
+		tooltip:AddLine(" ")
+		tooltip:AddLine("Enable or Disable", 1, .82, 0)
+		tooltip:AddLine("Right click to enable or disable a cog.", 1, 1, 1,  1, true);
+		tooltip:AddLine(" ")
+		tooltip:AddLine("NOTE: Currently equipped cogs cannot be disabled.", 1, 1, 1,  1, true);
+		tooltip:AddLine(" ")		
+		tooltip:Show()
+	end)
+	label:SetScript("OnLeave", function(lbl)
+		AceGUI.tooltip:Hide()
+	end)	
+
+	-- BUTTONS
+    self.myFrame = CreateFrame("Frame", "RemixCogwheelFrame", frame)
+	self.myFrame:SetPoint("TOPLEFT", 0, -18)
+	self.myFrame:SetPoint("BOTTOMRIGHT")
 
 	self.type = Type
 	self.frame = frame

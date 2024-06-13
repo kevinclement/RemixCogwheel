@@ -18,7 +18,7 @@ TODO:
 
 -----------------------------------------------------------------------------]]
 
--- DBG: DevTools_Dump
+-- DBG: 
 --   /script print(DevTools_Dump(GetInventoryItemLink("player", 8)))
 
 local APPNAME = "RemixCogwheel"
@@ -163,7 +163,7 @@ function RemixCogwheel:OnInitialize()
    self:CreateButton()
    self:SettingsChanged()
    
-   -- TODO: REMOVE: USED TO OPEN OPTIONS ON LAUNCH
+   -- DBG: USED TO OPEN OPTIONS ON LAUNCH
    -- C_Timer.After(2, function() 
    --    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)  
    --    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
