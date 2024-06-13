@@ -3,27 +3,6 @@ TODOs:
 
   [ ] add help description above buttons for help with right click, drag, etc
 
-  [ ] handle in combat type stuff proper with new settings
-
-  [ ] use inventory
-    [ ] need to sort by name or something to have something consistent
-	    that doesn't change with bag placement
-  [ ] update when inventory does
-  [ ] update when to/from bank
-
-  [ ] API
-    [ ] SetDisabled
-	[ ] SetLabel
-	[ ] SetList
-	[ ] SetValue
-	[ ] Callback OnValueChanged(value), fired when a value is selected, this must be a key from the list table.
-
-  [ ] need to call into updateMacro stuff when list is changing
-  [ ] have main part of app use the setting gem list instead of fixed list
-    
-  [ ] first run without being configured, button should have special icon/text
-    [ ] maybe even have it handle on click being configure 
-
   [ ] Cleanup DBG
   [ ] Cleanup Other
 -----------------------------------------------------------------------------]]

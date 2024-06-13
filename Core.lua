@@ -26,13 +26,16 @@ TODO:
 local APPNAME = "RemixCogwheel"
 RemixCogwheel = LibStub("AceAddon-3.0"):NewAddon("RemixCogwheel", "AceConsole-3.0", "AceEvent-3.0", "AceHook-3.0")
 local contextMenuFrame = CreateFrame("Frame", APPNAME .. "ContextMenuFrame", UIParent, "UIDropDownMenuTemplate")
-local isRunning, isExternal = false, false
+local isRunning = false
 
--- TODO: ADD BACK CAST
-   -- "/cast " .. gem.name .."\n"
-local NOOP_MACRO = "/script print('NOT CASTING, just swapping')\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
-local CAST_MACRO = "/script print('cast using var ' .. _G.RC.equipped.name)\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
--- local CAST_MACRO = "/script print('cast using var ' .. _G.RC.equipped.name)"
+-- local CAST_MACRO = "/script print('would have cast ' .. _G.RC.equipped.name)\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
+local NOOP_MACRO = "/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
+local CAST_MACRO = 
+[[/cast {1}
+/script SocketInventoryItem(8)
+/click ItemSocketingSocket1
+/script CloseSocketInfo()
+]]
 
 _G.RC = RemixCogwheel
 _G.BINDING_CATEGORY = "Remix Cogwheel"
@@ -128,6 +131,17 @@ NOTIFY_GEMS:RegisterMessage("BUTTONS_UPDATED", function()
    RemixCogwheel.next = RemixCogwheel:GetNextGem()
 end)
 
+local function strtemplate(str, vars, ...)
+   if type(vars) ~= 'table' then
+       vars = { vars, ... }
+   end
+   return (string.gsub(
+               str,
+               "({([^}]+)})",
+               function(whole, i) return vars[tonumber(i) or i] or whole end
+           ))
+end
+
 function RemixCogwheel:OnInitialize()
    self.db = LibStub("AceDB-3.0"):New(APPNAME .. "DB", defaults)
 
@@ -150,8 +164,8 @@ function RemixCogwheel:OnInitialize()
 
    self:CreateButton()
    self:SettingsChanged()
-       
-   -- TODO: REMOVE
+   
+   -- TODO: REMOVE: USED TO OPEN OPTIONS ON LAUNCH
    -- C_Timer.After(2, function() 
    --    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)  
    --    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
@@ -211,7 +225,7 @@ function RemixCogwheel:CreateButton()
    self.f:EnableMouse(true)
    self.f:RegisterForDrag("LeftButton")
    self.f:RegisterForClicks("AnyUp")
-   self.f:SetAttribute("type1", "macro") 
+   self.f:SetAttribute("type1", "macro")   
    self.f:SetSize(45, 45)
    self.f:SetScale(self.db.char.scale)
 
@@ -243,7 +257,6 @@ function RemixCogwheel:CreateButton()
       end
    end)
    
-   self.f:SetAttribute("macrotext", CAST_MACRO)
    self.f:SetScript('PostClick', function (btn, button)
       
       if button == "RightButton" then return end
@@ -291,13 +304,7 @@ function RemixCogwheel:CreateButton()
 
          -- after move, clear the bag and slot info
          self.equipped.bag = nil
-         self.equipped.slot = nil
-
-         if isExternal then
-            isExternal = false
-            print("setting macro back to cast style")
-            self.f:SetAttribute("macrotext", CAST_MACRO)
-         end
+         self.equipped.slot = nil         
       end)
    end)
 end
@@ -446,11 +453,14 @@ function RemixCogwheel:UpdateButton()
    
    -- enable the button
    self.f:Enable()
+
+   -- update the macro
+   -- TODO: need combat protection again
+   self.f:SetAttribute("macrotext1", strtemplate(CAST_MACRO, self.equipped.name))
 end
 
 -- Expose for macros/opie     
 function RemixCogwheel:SwapInGem(gemId)
-   isExternal = true
    self.f:SetAttribute("macrotext", NOOP_MACRO)
    self.next = self.GEM_LOOKUP[tostring(gemId)]
 end
