@@ -1,0 +1,4 @@
+<Bindings>  
+  <Binding name="CLICK RemixCogwheelButton:LeftButton" runOnUp="false" category="BINDING_CATEGORY">
+  </Binding>  
+</Bindings>

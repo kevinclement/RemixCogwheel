@@ -1,0 +1,22 @@
+## Interface: 100207
+## Version: 1.0.0
+## Title: Remix Cogwheel
+## Notes: Automates cogwheel insertion like a good robot should
+## Author: Kevin Clement (kevin.clement@gmail.com)
+## SavedVariables: RemixCogwheelDB
+## OptionalDeps: Ace3
+
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+libs\AceAddon-3.0\AceAddon-3.0.xml
+libs\AceEvent-3.0\AceEvent-3.0.xml
+libs\AceDB-3.0\AceDB-3.0.xml
+libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
+libs\AceConsole-3.0\AceConsole-3.0.xml
+libs\AceGUI-3.0\AceGUI-3.0.xml
+libs\AceConfig-3.0\AceConfig-3.0.xml
+libs\AceHook-3.0\AceHook-3.0.xml
+
+Gems.lua
+Core.lua
+CogwheelConfig.lua
