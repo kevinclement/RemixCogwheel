@@ -3,6 +3,11 @@
 TODO:
   TESTING:
     [ ] boots dont have socket
+  
+  [ ] extra support for soulshape, don't switch while still active
+    [ ] 441759 is BUFF/Aura
+  
+  [ ] can remove code with new macro?
 
   FUTURE:
       [ ] Add Macro from settings
@@ -23,7 +28,7 @@ local isRunning = false
 -- local CAST_MACRO = "/script print('would have cast ' .. _G.RC.equipped.name)\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
 local NOOP_MACRO = "/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
 local CAST_MACRO = 
-[[/cast {1}
+[[/use cogwheel gem
 /script SocketInventoryItem(8)
 /click ItemSocketingSocket1
 /script CloseSocketInfo()

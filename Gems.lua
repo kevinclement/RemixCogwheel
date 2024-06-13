@@ -3,7 +3,7 @@ local AceEvent = LibStub("AceEvent-3.0")
 NOTIFY_GEMS = {}
 AceEvent:Embed(NOTIFY_GEMS) 
 
-GEMS_VERSION = "0.9"
+GEMS_VERSION = "0.14"
 GEMS = {
    {
       name = "Sprint",
@@ -22,21 +22,19 @@ GEMS = {
       texture = "spell_druid_stamedingroar",
       spellId = 441493,
       gemId = 218005
-   },   
+   },
+   {
+      name = "Soulshape",
+      texture = "ability_nightfae_flicker",
+      spellId = 441759,
+      gemId = 218110,
+   }, 
    {
       name = "Blink",
       texture = "spell_arcane_blink",
       spellId = 427053,
       gemId = 216629
-   },
-
-   -- {
-   --    name = "Soulshape",
-   --    texture = "ability_nightfae_flicker",
-   --    spellId = 441759,
-   --    gemId = 218110,
-   -- },   
-
+   },      
 
    -- DISABLED by default since not really 'sprint'-like but still here for macros
    -- ############################################################################
@@ -111,7 +109,7 @@ GEMS = {
    --    spellId = 427026,
    --    gemId = 216631,
    --    isEnabled = false,
-   -- },
+   -- },   
 
    -- FULLY DISABLED: don't see use for this for now
    -- ############################################################################
