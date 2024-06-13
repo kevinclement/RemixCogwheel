@@ -2,10 +2,8 @@
 
 TODO:
 
-   [ ] BUG: handle case where you manual equip and its not in our list or is disabled
-   [x] Macro: does it still work if disabled on list?
-
-   [ ] All gems added but disabled?   
+  [ ] add help description above buttons for help with right click, drag, etc
+  [ ] Cleanup DBG
 
   TESTING:
     [ ] boots dont have socket

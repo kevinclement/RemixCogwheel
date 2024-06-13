@@ -1,10 +1,5 @@
 --[[---------------------------------------------------------------------------
-TODOs:  
-
-  [ ] add help description above buttons for help with right click, drag, etc
-
-  [ ] Cleanup DBG
-  [ ] Cleanup Other
+TODOs:      
 -----------------------------------------------------------------------------]]
 
 local Type, Version = "CogwheelConfig", 1
@@ -40,7 +35,6 @@ local function getFinalEnabledSlot()
 end 
 
 local function moveBtn(source, dest)	
-	-- print("MOVING: " .. tostring(source) .. " => " .. tostring(dest))	
 	local btn = BUTTONS[source]
 	table.insert(btn.obj.gems, dest, table.remove(btn.obj.gems, source))
 	
@@ -111,8 +105,7 @@ local function onLeave(btn)
 	AceGUI.tooltip:Hide()
 end
 
-local function onClick(self, button, down)	
-    -- print("## BTN onClk")
+local function onClick(self, button, down)	    
 	PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON)    
 
 	if button == "RightButton" then
@@ -138,7 +131,6 @@ local function onClick(self, button, down)
 end
 
 local function onDragStart(self)
-	-- print("## BTN dragStart: " .. tostring(self:GetID()) .. " inUse: " .. tostring(self.inUse))
 	if not self.inUse then return end
 	isDragging = true
 
@@ -152,7 +144,6 @@ local function onDragStart(self)
 end
 
 local function onDragAbort(self)
-	-- print("## BTN dragAbort: " .. tostring(self:GetID()))
     local src = self.source
     if src then
         _G.SetCursor(nil)
@@ -163,7 +154,6 @@ local function onDragAbort(self)
 end
 
 local function onDragStop(self)
-    -- print("## BTN dragStop: " .. tostring(self:GetID()))
 	if not self.inUse then return end
 	isDragging = false
 
@@ -200,42 +190,25 @@ Methods
 -------------------------------------------------------------------------------]]
 local methods = {
 	["OnAcquire"] = function(self)
-        -- print("## OnAcquire")
 		self:SetDisabled(false)
 		self:SetLabel()
 	end,
 
 	["OnRelease"] = function(self)
-		-- print("## OnRelease")
 	end,
 
 	["SetValue"] = function(self, value)
-		-- print("## SetValue: " .. tostring(value))
 	end,
 
 	["SetList"] = function(self, list)
-		-- print("## SetList")
 		self.gems = list
 		self:UpdateIconButtons()
 	end,
 
 	["SetDisabled"] = function(self, disabled)
-		-- print("## SetDisabled: " .. tostring(disabled))
-        
-		-- TODO: work
-
-        self.disabled = disabled
-		if disabled then
-			self.label:SetTextColor(0.5,0.5,0.5)
-		else
-			self.label:SetTextColor(1,.82,0)
-		end
 	end,
 
-	["SetLabel"] = function(self, text)
-		-- print("## SetLabel: " .. tostring(text))
-
-		-- TODO: figure out real differences here
+	["SetLabel"] = function(self, text)		
         if text and text ~= "" then
 			self.label:SetText(text)
 			self.label:Show()
@@ -246,7 +219,6 @@ local methods = {
 	end,
 	
 	["UpdateIconButtons"] = function(self)
-		-- print("## UpdateIconButtons")
 		if #self.gems ~= #BUTTONS then
 			for i = #BUTTONS+1, #self.gems do
 				self:CreateButton(i, self.gems[i].texture)
@@ -331,7 +303,6 @@ local methods = {
 Constructor
 -------------------------------------------------------------------------------]]
 local function Constructor()
-    -- print("## Constructor")
 	local self = {}
 
 	local frame = CreateFrame("Frame", nil, UIParent)   
