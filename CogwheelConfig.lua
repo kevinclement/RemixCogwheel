@@ -267,7 +267,7 @@ local methods = {
 	end,
 	
 	["UpdateIconButtons"] = function(self)
-		print("## UpdateIconButtons")
+		-- print("## UpdateIconButtons")
 		if #self.gems ~= #BUTTONS then
 			for i = #BUTTONS+1, #self.gems do
 				self:CreateButton(i, self.gems[i].texture)

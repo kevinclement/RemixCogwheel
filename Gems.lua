@@ -3,13 +3,25 @@ local AceEvent = LibStub("AceEvent-3.0")
 NOTIFY_GEMS = {}
 AceEvent:Embed(NOTIFY_GEMS) 
 
-GEMS_VERSION = "0.1"
+GEMS_VERSION = "0.6"
 GEMS = {
    {
       name = "Sprint",
       texture = "ability_rogue_sprint",
       spellId = 427030,
       gemId = 216632
+   },
+   {
+      name = "Spirit Walk",
+      texture = "ability_tracking",
+      spellId = 441576,
+      gemId = 218046
+   },
+   {
+      name = "Stampeding Roar",
+      texture = "spell_druid_stamedingroar",
+      spellId = 441493,
+      gemId = 218005
    },
    {
       name = "Roll",
@@ -23,97 +35,95 @@ GEMS = {
       spellId = 427053,
       gemId = 216629      
    },
+
+   -- {
+   --    name = "Soulshape",
+   --    texture = "ability_nightfae_flicker",
+   --    spellId = 441759,
+   --    gemId = 218110,
+   -- },   
+
+
+   -- DISABLED by default since not really 'sprint'-like but still here for macros
+   -- ############################################################################
    {
       name = "Heroic Leap",
       texture = "ability_heroicleap",
       spellId = 427031,
-      gemId = 216630
-   },
-   {
-      name = "Stampeding Roar",
-      texture = "spell_druid_stamedingroar",
-      spellId = 441493,
-      gemId = 218005
-   },
-   {
-      name = "Spirit Walk",
-      texture = "ability_tracking",
-      spellId = 441576,
-      gemId = 218046
-   },
-   {
-      name = "Death's Advance",
-      texture = "spell_shadow_demonicempathy",
-      spellId = 441749,
-      gemId = 218109
+      gemId = 216630,
+      isEnabled = false
    },
    {
       name = "Trailblazer",
       texture = "ability_hunter_aspectmastery",
       spellId = 441348,
-      gemId = 217989
-   }
-   
+      gemId = 217989,
+      isEnabled = false
+   },
+   {
+      name = "Pursuit of Justice",
+      texture = "ability_paladin_veneration",
+      spellId = 441564,
+      gemId = 218044,
+      isEnabled = false
+   },
+   {
+      name = "Door of Shadows",
+      texture = "ability_venthyr_doorofshadows",
+      spellId = 441569,
+      gemId = 218045,
+      isEnabled = false
+   },
+   {
+      name = "Death's Advance",
+      texture = "spell_shadow_demonicempathy",
+      spellId = 441749,
+      gemId = 218109,
+      isEnabled = false
+   },
+   {
+      name = "Leap of Faith",
+      texture = "priest_spell_leapoffaith_a",
+      spellId = 441471,
+      gemId = 218003,
+      isEnabled = false
+   },
+   {
+      name = "Disengage",
+      texture = "ability_rogue_feint",
+      spellId = 441299,
+      gemId = 217983,
+      isEnabled = false
+   },
+   {
+      name = "Wild Charge",
+      texture = "spell_druid_wildcharge",
+      spellId = 441559,
+      gemId = 218043,
+      isEnabled = false
+   },
+   {
+      name = "Vanish",
+      texture = "ability_vanish",
+      spellId = 441479,
+      gemId = 218004,
+      isEnabled = false
+   },
 
-   -- TODO: soulshape test
-   -- ["218110"]
-   --    name = "Soulshape",
-   --    spellId = 441759,
-   --    texture = "ability_nightfae_flicker"
-  
-  
-   }
-
-   -- Not really movement gems, should they be in the loop but disabled?
-   -- maybe for macros?
-   -- #####################################################################
-
-   -- ["218045"]
-   --    name = "Door of Shadows",
-   --    spellId = 441569,
-   --    texture = "ability_venthyr_doorofshadows"
-
-   -- Pull party member, 40% increase (borderline)
-   -- ["218003"]
-   --    name = "Leap of Faith",
-   --    spellId = 441471,
-   --    texture = "priest_spell_leapoffaith_a"
-   
-   -- Leep backwards, then 25% (borderline)
-   -- ["217983"]
-   --    name = "Disengage",
-   --    spellId = 441299,
-   --    texture = "ability_rogue_feint"
-
-   -- Fly to a nearby ally's position
-   -- ["218043"]
-   --    name = "Wild Charge",
-   --    spellId = 441559,
-   --    texture = "spell_druid_wildcharge"
-   
-   -- Flat 8% movement speed increase
-   -- ["218044"]
-   --    name = "Pursuit of Justice",
-   --    spellId = 441564,
-   --    texture = "ability_paladin_veneration"
-
-   -- Enter stealth
-   -- ["218004"]
-   --    name = "Vanish",
-   --    spellId = 441479,
-   --    texture = "ability_vanish"
-   
-   -- Sac 20% of current health to shield 200% sac'd health
-   --  ["218108"]
+   -- FULLY DISABLED: don't see use for this for now
+   -- ############################################################################
+   -- {
    --    name = "Dark Pact",
+   --    texture = "spell_shadow_deathpact",
    --    spellId = 441741,
-   --    texture = "spell_shadow_deathpact"
-   
-   -- 15s ability to cast while moving
-   -- ["218082"]
+   --    gemId = 218108,
+   --    isEnabled = false
+   -- },
+   -- {
    --    name = "Spiritwalker's Grace",
+   --    texture = "spell_shaman_spiritwalkersgrace",
    --    spellId = 441617,
-   --    texture = "spell_shaman_spiritwalkersgrace"
-     
-   
-    
+   --    gemId = 218082,
+   --    isEnabled = false
+   -- }
+}
