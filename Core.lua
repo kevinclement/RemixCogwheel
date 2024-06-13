@@ -2,21 +2,19 @@
 
 TODO:
 
-   [ ] BUG: handle case where you manual equp and its not in our list or is disabled
-   [ ] Macro: does it still work if disabled on list?
+   [ ] BUG: handle case where you manual equip and its not in our list or is disabled
+   [x] Macro: does it still work if disabled on list?
 
    [ ] All gems added but disabled?   
 
   TESTING:
     [ ] boots dont have socket
-    [ ] don't have gem (bank) but did have it at one point
 
   COOLDOWN:
     [ ] it shows GCD right now, might now want that or maybe setting?
 
   FUTURE:
-      [ ] MACRO Support: Support for calling into logic from macro or WA or oPie (which could use macro)
-         [ ] Add Macro from settings
+      [ ] Add Macro from settings
       [ ] Keybinding next gem
       [ ] FALLBACK: maybe support for a fallback gem if all cooldown, like the move fast one 
 
@@ -133,10 +131,12 @@ end)
 function RemixCogwheel:OnInitialize()
    self.db = LibStub("AceDB-3.0"):New(APPNAME .. "DB", defaults)
 
-   -- TODO: REMOVE
-   self.db:ResetDB()
-   if not self.db.char.GEMS then
+   -- I'm too lazy to figure out whats going on with tracking this on changes
+   -- so I'm just tracking with a version and doing a full reset if I rev it.
+   -- lame user experience, as I should "migrate"
+   if not self.db.char.GEMS or self.db.char.GEMS_VERSION ~= GEMS_VERSION then
       self.db.char.GEMS = GEMS
+      self.db.char.GEMS_VERSION = GEMS_VERSION
    end
 
    LibStub("AceConfig-3.0"):RegisterOptionsTable(APPNAME, options)
@@ -150,7 +150,7 @@ function RemixCogwheel:OnInitialize()
 
    self:CreateButton()
    self:SettingsChanged()
-     
+       
    -- TODO: REMOVE
    -- C_Timer.After(2, function() 
    --    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)  
@@ -165,15 +165,15 @@ end
 
 function RemixCogwheel:BAG_UPDATE_DELAYED()
    -- print("##BAG_UPDATE. isRunning:" .. tostring(isRunning))
-   
+   local equippedChanged = false
+   if not isRunning then
+      equippedChanged = self:GetAndSetEquippedGem()
+   end
+
    self:FindGemsInBags()
 
-   if not isRunning then
-      local changedEquip = self:GetAndSetEquippedGem()
-
-      if changedEquip then
-         self:UpdateButton()
-      end      
+   if not isRunning and equippedChanged then
+      self:UpdateButton()
    end
 end
 
@@ -343,7 +343,7 @@ function RemixCogwheel:FindGemsInBags()
    while i <= #self.db.char.GEMS do
       local gem = self.db.char.GEMS[i]
 
-      if not gem.isOwned or not gem.isEnabled then 
+      if not gem.isOwned or not gem.isEnabled then          
          table.insert(invalid, table.remove(self.db.char.GEMS, i))
       else
          i = i + 1

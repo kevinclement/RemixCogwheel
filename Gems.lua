@@ -3,6 +3,7 @@ local AceEvent = LibStub("AceEvent-3.0")
 NOTIFY_GEMS = {}
 AceEvent:Embed(NOTIFY_GEMS) 
 
+GEMS_VERSION = "0.1"
 GEMS = {
    {
       name = "Sprint",
@@ -45,8 +46,13 @@ GEMS = {
       texture = "spell_shadow_demonicempathy",
       spellId = 441749,
       gemId = 218109
+   },
+   {
+      name = "Trailblazer",
+      texture = "ability_hunter_aspectmastery",
+      spellId = 441348,
+      gemId = 217989
    }
-   
    
 
    -- TODO: soulshape test
@@ -55,15 +61,7 @@ GEMS = {
    --    spellId = 441759,
    --    texture = "ability_nightfae_flicker"
   
-   -- 30% movement increase when out of combat 3s
-   -- {
-   --    name = "Trailblazer",
-   --    texture = "ability_hunter_aspectmastery",
-   --    spellId = 441348,
-   --    gemId = 217989
-   -- },
-   
-
+  
    }
 
    -- Not really movement gems, should they be in the loop but disabled?

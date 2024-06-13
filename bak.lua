@@ -1,4 +1,9 @@
 
+print(string.format("moving %s: %s%s%s", 
+   gem.name, 
+   gem.isEquipped and " EQUIPPED" or " NOT EQUIPPED",
+   gem.isOwned and " OWNED" or " NOT OWNED",
+   gem.isEnabled and " ENABLED" or " NOT ENABLED"))
 
 print(format("post click move.  equip: %s next: %s", self.equipped and self.equipped.name or "nil", self.next and self.next.name or "nil"))
 print(format("post click move 2.  equip: %s next: %s", RemixCogwheel.equipped and RemixCogwheel.equipped.name or "nil", RemixCogwheel.next and RemixCogwheel.next.name or "nil"))
