@@ -23,6 +23,7 @@ TODO:
 
 local APPNAME = "RemixCogwheel"
 RemixCogwheel = LibStub("AceAddon-3.0"):NewAddon("RemixCogwheel", "AceConsole-3.0", "AceEvent-3.0", "AceHook-3.0")
+local AceGUI = LibStub and LibStub("AceGUI-3.0", true)
 local contextMenuFrame = CreateFrame("Frame", APPNAME .. "ContextMenuFrame", UIParent, "UIDropDownMenuTemplate")
 local isRunning = false
 
@@ -205,11 +206,14 @@ end
 
 local function onDragStart(self)
    if not RemixCogwheel.db.char.btnLocked then
-       self:StartMoving()
+      dragging = true
+      AceGUI.tooltip:Hide()
+      self:StartMoving()
    end
 end
 
 local function onDragStop(self)
+   dragging = false
    self:StopMovingOrSizing()
    local point, relativeTo, relativePoint, offsetX, offsetY = self:GetPoint()
    RemixCogwheel.db.char.btnX = offsetX
@@ -226,6 +230,20 @@ function RemixCogwheel:CreateButton()
    self.f:SetAttribute("type1", "macro")   
    self.f:SetSize(45, 45)
    self.f:SetScale(self.db.char.scale)
+
+   self.f:SetScript("OnEnter", function(frame)
+		local tooltip = AceGUI.tooltip
+		tooltip:SetOwner(frame, "ANCHOR_NONE")	
+		tooltip:SetPoint("BOTTOMRIGHT", frame, "TOPLEFT", 0, 0)
+		
+      if self.equipped and not dragging then
+         tooltip:SetSpellByID(self.equipped.spellId, nil, false)   
+         tooltip:Show()
+      end      		
+	end)
+	self.f:SetScript("OnLeave", function(frame)
+		AceGUI.tooltip:Hide()
+	end)
 
    self.t = self.f:CreateTexture(nil, "BACKGROUND")
    self.t:SetAllPoints()
