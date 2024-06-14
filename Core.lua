@@ -4,11 +4,6 @@ TODO:
   TESTING:
     [ ] boots dont have socket
   
-  [ ] extra support for soulshape, don't switch while still active
-    [ ] 441759 is BUFF/Aura
-  
-  [ ] can remove code with new macro?
-
   FUTURE:
       [ ] Add Macro from settings
       [ ] Keybinding next gem
@@ -27,12 +22,7 @@ local isRunning = false
 
 -- local CAST_MACRO = "/script print('would have cast ' .. _G.RC.equipped.name)\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
 local NOOP_MACRO = "/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
-local CAST_MACRO = 
-[[/use cogwheel gem
-/script SocketInventoryItem(8)
-/click ItemSocketingSocket1
-/script CloseSocketInfo()
-]]
+local CAST_MACRO = "/use cogwheel gem\n/script SocketInventoryItem(8)\n/click ItemSocketingSocket1\n/script CloseSocketInfo()"
 
 _G.RC = RemixCogwheel
 _G.BINDING_CATEGORY = "Remix Cogwheel"
@@ -127,17 +117,6 @@ NOTIFY_GEMS:RegisterMessage("BUTTONS_UPDATED", function()
    -- Update the next item since it could have changed in settings
    RemixCogwheel.next = RemixCogwheel:GetNextGem()
 end)
-
-local function strtemplate(str, vars, ...)
-   if type(vars) ~= 'table' then
-       vars = { vars, ... }
-   end
-   return (string.gsub(
-               str,
-               "({([^}]+)})",
-               function(whole, i) return vars[tonumber(i) or i] or whole end
-           ))
-end
 
 function RemixCogwheel:OnInitialize()
    self.db = LibStub("AceDB-3.0"):New(APPNAME .. "DB", defaults)
@@ -270,6 +249,9 @@ function RemixCogwheel:CreateButton()
       end
    end)
    
+   -- TODO: should probably have combat protection here
+   self.f:SetAttribute("macrotext1", CAST_MACRO)
+
    self.f:SetScript('PostClick', function (btn, button)
       
       if button == "RightButton" then return end
@@ -314,6 +296,12 @@ function RemixCogwheel:CreateButton()
 
          self:UpdateButton()
          self:MoveGem(moveGem)
+
+         -- if this was a noop click from a macro reset our macro to the standard one
+         if fNoop then
+            fNoop = false
+            self.f:SetAttribute("macrotext1", CAST_MACRO)
+         end
 
          -- after move, clear the bag and slot info
          self.equipped.bag = nil
@@ -464,15 +452,11 @@ function RemixCogwheel:UpdateButton()
    
    -- enable the button
    self.f:Enable()
-
-   -- update the macro
-   if not InCombatLockdown() then
-      self.f:SetAttribute("macrotext1", strtemplate(CAST_MACRO, self.equipped.name))
-   end
 end
 
 -- Expose for macros/opie     
 function RemixCogwheel:SwapInGem(gemId)
+   fNoop = true
    self.f:SetAttribute("macrotext1", NOOP_MACRO)
    self.next = self.GEM_LOOKUP[tostring(gemId)]
 end
