@@ -9,6 +9,19 @@ Cogwheels in this event are gems that go into a cogwheel slot in your boots.  Yo
 ## Options
 
 You can configure what order you want the gems executed in using the options dialog.
+- Reorder: click and drag the icon to reorder
+- Enable/Disable: right click the icon to disable or enable the gem use
 
-![Demo](https://raw.githubusercontent.com/kevinclement/RemixCogwheel/main/media/options.png)
+![Options](https://raw.githubusercontent.com/kevinclement/RemixCogwheel/main/media/options.png)
+
+## Macro Equip
+![Macro](https://raw.githubusercontent.com/kevinclement/RemixCogwheel/main/media/macro.png)
+
+I also exposed a little bit of script to allow creating a macro to equip a specific gem.  This allows you to add it to your actionbars or oPie for specific 'always on' gems like Trailblazer.
+
+```
+#showtooltip Trailblazer
+/script _G["RC"]:SwapInGem(217989)
+/click RemixCogwheelButton
+```
 
