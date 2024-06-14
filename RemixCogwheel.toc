@@ -1,11 +1,12 @@
 ## Interface: 100207
-## Version: 1.0.0
+## Version: @project-version@
 ## Title: Remix Cogwheel
 ## IconTexture: Interface\Icons\INV_Misc_Gear_01
 ## Notes: Automates cogwheel insertion like a good robot should
 ## Author: Kevin Clement (kevin.clement@gmail.com)
 ## SavedVariables: RemixCogwheelDB
 ## OptionalDeps: Ace3
+## X-Curse-Project-ID: 1036656
 
 libs\LibStub\LibStub.lua
 libs\CallbackHandler-1.0\CallbackHandler-1.0.xml

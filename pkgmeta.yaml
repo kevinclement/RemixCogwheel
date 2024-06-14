@@ -1,0 +1,11 @@
+package-as: RemixCogwheel
+
+enable-nolib-creation: no
+enable-toc-creation: no
+
+embedded-libraries:
+  - Ace3
+
+ignore:
+  - README.md
+  - media/*
