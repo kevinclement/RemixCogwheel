@@ -3,7 +3,7 @@ local AceEvent = LibStub("AceEvent-3.0")
 NOTIFY_GEMS = {}
 AceEvent:Embed(NOTIFY_GEMS) 
 
-GEMS_VERSION = "0.14"
+GEMS_VERSION = "0.17"
 GEMS = {
    {
       name = "Sprint",

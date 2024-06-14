@@ -1,9 +1,6 @@
 --[[---------------------------------------------------------------------------
 
-TODO:
-  TESTING:
-    [ ] boots dont have socket
-  
+TODO: 
   FUTURE:
       [ ] Add Macro from settings
       [ ] Keybinding next gem
@@ -394,7 +391,7 @@ function RemixCogwheel:GetAndSetEquippedGem()
    end
       
    self.equipped = gem
-   return self.equipped ~= cur
+   return self.equipped ~= cur or cur == nil
 end
 
 function RemixCogwheel:GetNextGem()
