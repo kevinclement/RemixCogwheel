@@ -200,7 +200,7 @@ function RemixCogwheel:CreateButton()
    self.f:EnableMouse(true)
    self.f:RegisterForDrag("LeftButton")
    self.f:RegisterForClicks("AnyUp")
-   self.f:SetAttribute("type1", "macro")   
+   self.f:SetAttribute("type1", "macro")
    self.f:SetSize(45, 45)
    self.f:SetScale(self.db.char.scale)
 
@@ -241,7 +241,9 @@ function RemixCogwheel:CreateButton()
    self.f:SetScript('PreClick', function (btn, button)
       if button == "RightButton" then     
          EasyMenu(contextMenu, contextMenuFrame, "cursor", 0 , 0, "MENU");
-      else 
+      elseif not self.isValidButton then
+         return
+      else
          isRunning = true
       end
    end)
@@ -251,7 +253,7 @@ function RemixCogwheel:CreateButton()
 
    self.f:SetScript('PostClick', function (btn, button)
       
-      if button == "RightButton" then return end
+      if not self.isValidButton or button == "RightButton" then return end
 
       if IsModifierKeyDown() then
          self:PrintWarning("modifier key is pressed. cannot swap gem.")
@@ -429,8 +431,12 @@ function RemixCogwheel:UpdateButton()
       -- fade, desaturate and disable the button
       self.t:SetDesaturated(true)
       self.t:SetAlpha(.7)
-      self.f:Disable()
+      self.f:SetAttribute("type1", nil)
+      self.isValidButton = false
       return
+   else
+      self.isValidButton = true
+      self.f:SetAttribute("type1", "macro")
    end   
 
    -- find next gem   
