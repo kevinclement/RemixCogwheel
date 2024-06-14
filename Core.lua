@@ -139,10 +139,10 @@ function RemixCogwheel:OnInitialize()
    self:SettingsChanged()
    
    -- DBG: USED TO OPEN OPTIONS ON LAUNCH
-   -- C_Timer.After(2, function() 
-   --    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)  
-   --    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
-   -- end)  
+   C_Timer.After(2, function() 
+      InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)  
+      InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
+   end)  
 end
 
 function RemixCogwheel:OnEnable()

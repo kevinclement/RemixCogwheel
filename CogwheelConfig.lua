@@ -337,6 +337,14 @@ local function Constructor()
 		AceGUI.tooltip:Hide()
 	end)	
 
+	-- MACRO BUTTON
+	local btn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+	btn:SetPoint("TOPLEFT", frame, "TOPLEFT", 260, 0)
+	btn:SetSize(120, 20)
+	btn:SetText("Create Macro")
+	btn:Disable()
+
+
 	-- BUTTONS
     self.myFrame = CreateFrame("Frame", "RemixCogwheelFrame", frame)
 	self.myFrame:SetPoint("TOPLEFT", 0, -18)
